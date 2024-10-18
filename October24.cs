@@ -62,8 +62,11 @@ public class Solution {
         Console.WriteLine(numerals);
         Console.WriteLine(values);
 
+        //Loop through falues in the array of chars
         for(int i = 0; i < values.Count(); i++)
         {
+            //come up with some case switch for the
+            //IX, IV cases, etc.... Should only be 6
             total += numerals[values[i]];
         }
         return total;
