@@ -47,14 +47,14 @@ using Microsoft.Collections;
 
 public class Solution {
     public int RomanToInt(string s) {
-        Dictionary<string, int> numerals = new Dictionary<string, int>();
-        numerals.Add("I",1);
-        numerals.Add("V",5);
-        numerals.Add("X",10);
-        numerals.Add("L",50);
-        numerals.Add("C",100);
-        numerals.Add("D",500);
-        numerals.Add("M",1000);
+        Dictionary<char, int> numerals = new Dictionary<char, int>();
+        numerals.Add('I',1);
+        numerals.Add('V',5);
+        numerals.Add('X',10);
+        numerals.Add('L',50);
+        numerals.Add('C',100);
+        numerals.Add('D',500);
+        numerals.Add('M',1000);
 
         char[] charValues = s.ToCharArray();
         int total = 0;
@@ -67,6 +67,9 @@ public class Solution {
         {
             //come up with some case switch for the
             //IX, IV cases, etc.... Should only be 6
+
+            //primary issue here is that the ToCharArray method uses
+            //chars obviously. need to convert the dict to use char
             total += numerals[values[i]];
         }
         return total;
