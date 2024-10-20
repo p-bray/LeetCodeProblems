@@ -62,15 +62,40 @@ public class Solution {
         Console.WriteLine(numerals);
 
         //Loop through falues in the array of chars
-        for(int i = 0; i < charValues.Count(); i++)
+
+
+
+        for(int i = charValues.Count() - 1; i > 0; i--)
         {
             //come up with some case switch for the
             //IX, IV cases, etc.... Should only be 6
 
             //primary issue here is that the ToCharArray method uses
             //chars obviously. need to convert the dict to use char
-            total += numerals[charValues[i]];
+
+            //loop through each one. if the current index (i) is not a 
+            //I, X, or C, you check index - 1. If that is 
+            //not an I,X, or C you do nothing. If it is, you subtract the value from i. 
+            //Then, you i--, i--. 
+
+            // total += numerals[charValues[i]];
+            if(charValues[i] != 'I' && charValues[i] != 'X' && charValues[i] != 'C')
+            {
+                if(charValues[i-1] == 'I' || charValues[i-1] == 'X' || charValues[i-1] == 'C')
+                {
+                    var pVal = numerals[charValues[i]];
+                    pVal -= numerals[charValues[i-1]];
+                    total += pVal;
+                    i--;
+                }else
+                {
+                    total += numerals[charValues[i]];
+                }
+            }
         }
+
+        //ways to handle the 'IX = 9' type cases:
+        //I think you start at the end of the array and go backward. 
         return total;
     }
 }
