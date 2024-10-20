@@ -60,17 +60,16 @@ public class Solution {
         int total = 0;
 
         Console.WriteLine(numerals);
-        Console.WriteLine(values);
 
         //Loop through falues in the array of chars
-        for(int i = 0; i < values.Count(); i++)
+        for(int i = 0; i < charValues.Count(); i++)
         {
             //come up with some case switch for the
             //IX, IV cases, etc.... Should only be 6
 
             //primary issue here is that the ToCharArray method uses
             //chars obviously. need to convert the dict to use char
-            total += numerals[values[i]];
+            total += numerals[charValues[i]];
         }
         return total;
     }
