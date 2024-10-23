@@ -30,32 +30,34 @@ public class Solution {
             //Then, you i--, i--. 
 
             // total += numerals[charValues[i]];
-            if(charValues[i] != 'I' && charValues[i] != 'X' && charValues[i] != 'C' && i != 0)
-            {
-                if(charValues[i-1] == 'I' || charValues[i-1] == 'X' || charValues[i-1] == 'C')
-                {
-                    var pVal = numerals[charValues[i]];
-                    var subVal = numerals[charValues[i-1]];
-                    Console.WriteLine("bigLoop"+charValues[i]);
-                    Console.WriteLine("subtractor"+charValues[i-1]);
-                    Console.WriteLine(pVal);
-                    Console.WriteLine(subVal);
-                    Console.WriteLine(pVal-subVal);
-                    pVal -= subVal;
-                    total += pVal;
-                    i--;
-                }else
-                {
-                    Console.WriteLine("eeee"+numerals[charValues[i]]);
-                    Console.WriteLine(charValues[i]);
-                    total += numerals[charValues[i]];
-                }
-            }else
-            {
-                Console.WriteLine("eeee"+numerals[charValues[i]]);
-                Console.WriteLine(charValues[i]);
-                total+= numerals[charValues[i]];
-            }
+
+            ///Not a bad idea to a solution, but with this you must have the conditionals. 
+            // if(charValues[i] != 'I' && charValues[i] != 'X' && charValues[i] != 'C' && i != 0)
+            // {
+            //     if(charValues[i-1] == 'I' || charValues[i-1] == 'X' || charValues[i-1] == 'C')
+            //     {
+            //         var pVal = numerals[charValues[i]];
+            //         var subVal = numerals[charValues[i-1]];
+            //         Console.WriteLine("bigLoop"+charValues[i]);
+            //         Console.WriteLine("subtractor"+charValues[i-1]);
+            //         Console.WriteLine(pVal);
+            //         Console.WriteLine(subVal);
+            //         Console.WriteLine(pVal-subVal);
+            //         pVal -= subVal;
+            //         total += pVal;
+            //         i--;
+            //     }else
+            //     {
+            //         Console.WriteLine("eeee"+numerals[charValues[i]]);
+            //         Console.WriteLine(charValues[i]);
+            //         total += numerals[charValues[i]];
+            //     }
+            // }else
+            // {
+            //     Console.WriteLine("eeee"+numerals[charValues[i]]);
+            //     Console.WriteLine(charValues[i]);
+            //     total+= numerals[charValues[i]];
+            // }
 
 
             // for(int i = 0; i < charValues.Count(); i++)
@@ -99,31 +101,56 @@ public class Solution {
         
         
         
-        int i = 0;
-        if(charValues.Count%2 != 0)
-        {
-            total += numerals[charValues[i]];
-            i = 1;
-        }
+        // int i = 0;
+        // if(charValues.Count%2 != 0)
+        // {
+        //     total += numerals[charValues[i]];
+        //     i = 1;
+        // }
 
-        while(i < charValues.Count())
+        // while(i < charValues.Count())
+        // {
+        //     char place1 = charValues[i];
+        //     char place2 = charValues[i+1]; 
+        //     if(place1 != 'I' && place1 != 'X' && place1 != 'C')
+        //     {
+        //         total += numerals[place1] + numerals[place2];
+        //     }else
+        //     {
+        //         if(place1 == 'I' && (place2 == 'V' || place2 == 'X')) total += numerals[place2]-numerals[place1];
+        //         if(place1 == 'X' && (place2 == 'L' || place2 == 'C')) total += numerals[place2]-numerals[place1];
+        //         if(place1 == 'C' && (place2 == 'D' || place2 == 'M')) total += numerals[place2]-numerals[place1];
+        //     }
+
+        //     i++;
+        //     i++;
+        // }
+    
+        for(int i = charValues.Count()-1; i >= 0; i--)
         {
-            char place1 = charValues[i];
-            char place2 = charValues[i+1]; 
-            if(place1 != 'I' && place1 != 'X' && place1 != 'C')
+            if(i == 0)
             {
-                total += numerals[place1] + numerals[place2];
+                total += numerals[charValues[i]];
             }else
             {
-                if(place1 == 'I' && (place2 == 'V' || place2 == 'X')) total += numerals[place2]-numerals[place1];
-                if(place1 == 'X' && (place2 == 'L' || place2 == 'C')) total += numerals[place2]-numerals[place1];
-                if(place1 == 'C' && (place2 == 'D' || place2 == 'M')) total += numerals[place2]-numerals[place1];
+                if(charValues[i-1] == 'I' && (charValues[i] == 'V' || charValues[i] == 'X'))
+                {
+                    total += numerals[charValues[i]] - numerals[charValues[i-1]];
+                    i--;
+                }else if(charValues[i-1] == 'X' && (charValues[i] == 'L' || charValues[i] == 'C'))
+                {
+                    total += numerals[charValues[i]] - numerals[charValues[i-1]];
+                    i--;
+                }else if(charValues[i-1] == 'C' && (charValues[i] == 'D' || charValues[i] == 'M'))
+                {
+                    total += numerals[charValues[i]] - numerals[charValues[i-1]];
+                    i--;
+                }else
+                {
+                    total += numerals[charValues[i]];
+                }
             }
-
-            i++;
-            i++;
         }
-    
         
         
         return total;
