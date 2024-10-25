@@ -1,3 +1,12 @@
+//https://leetcode.com/problems/merge-two-sorted-lists/description/
+
+
+
+
+
+
+
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -9,23 +18,74 @@
  *     }
  * }
  */
+
+
+
+
 public class Solution {
     public ListNode MergeTwoLists(ListNode list1, ListNode list2) {
         
-        ListNode current = new ListNode();
+        ListNode index1 = list1;
+        ListNode index2 = list2;
+        ListNode returnList = new ListNode();
         
-        current.val = list1.val;
-        current.next = list1.next;
-        // next1.val = current.val;
-        // next1.next = current.next;
-        // ListNode next1 = current.next;
-        while(current != null)
+        // while(index1 != null)
+        // {
+        //     ListNode current = index1;
+        //     ListNode next = index1.next;
+        //     while(index2 != null)
+        //     {
+        //         if(current.val <= compare.val)
+        //         {
+        //             previous.next = compare;
+        //         }else
+        //     }
+        // }
+
+        //just append the list2 to list1
+        while(index1 != null)
         {
-            Console.WriteLine(current.val);
-            // current = next1;
-            // next1 = current.next;
+            Console.WriteLine(index1.val);
+            if(index1.next is null)
+            {
+                index1.next = index2;
+                break;
+            }else
+            {
+                index1 = index1.next;
+            }
         }
-        // Console.WriteLine(list1.val);\
-        return current;
+
+        while(index1 != null)
+        {
+            ListNode next1 = index1.next;
+            while(next1 != null)
+            {
+                if(next1.val >= index1.val)
+                {
+                    next1 = next1.next;
+                }else
+                {   
+                    index1.next = next1.next;
+                    next1.next = index1;
+                }
+            }
+            index1 = index1.next;
+        }
+
+
+        //idea: loop through list1. Check it agains each element of list2. if the current1 is less than current2
+        // while(current1 != null)
+        // {
+        //     while(current2 != null)
+        //     {
+        //         Console.WriteLine(current2.val);
+        //         current2 = current2.next;
+        //     }
+        //     Console.WriteLine(current1.val);
+        //     current1 = current1.next;
+        // }
+
+        return list1;
     }
 }
